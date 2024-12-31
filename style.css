@@ -5,12 +5,16 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
-
+.dropdown-menu{
+	background-color: rgba(0,0,0,0.3) !important;
+	--bs-dropdown-link-active-bg: rgba(255,255,255,0.3) !important;
+}
 @media (max-width: 991px){
     .sidebar{
-        background-color: rgba(255,255,255,0.15) !important;
+        background-color: rgba(0,0,0,0.15) !important;
         backdrop-filter: blur(10px);
     }
+	
     body{
         padding: 0 20px 0;
     }
@@ -51,8 +55,9 @@ body{
     margin-top: 20px;
 }
 .modal-content{
-    background-color: rgb(33, 37, 41) !important;
+    background-color: rgba(33, 37, 41,0.5) !important;
     color: rgb(222, 226, 230) !important;
+    backdrop-filter: blur(10px);
 }
 .modal-body{
     display: flex;
@@ -70,15 +75,49 @@ body{
 .card {
 	position: relative;
 	width: 300px;
-    background-color: rgb(33, 37, 41) !important;
+    background-color: rgba(33, 37, 41,0) !important;
     border: 0 !important;
 }
+/* card border layout */
+@property --angle{
+	syntax: "<angle>";
+	initial-value: 0deg;
+	inherits: false;
+}
+.card::after, .card::before {
+	content:'';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-image: conic-gradient(from var(--angle),#119CFDFF, #A100FFFF , #119CFDFF);
+	top: 50%;
+	left: 50%;
+	z-index: -1;
+	translate: -50% -50%;
+	padding: 3px;
+	border-radius: 30px;
+	animation: 3s spin linear infinite;
+}
+.card::before{
+	filter: blur(1.5rem);
+	opacity: 0.5;
+}
+@keyframes spin {
+	from{
+		--angle: 0deg;
+	}
+	to{
+		--angle: 360deg;
+	}
+}
+
 .card .card-content {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
 	padding: 40px 15px 40px 15px;
+	margin: 3px;
 	background: #1d1c1c;
 	opacity: 0;
 	border-radius: 30px;
