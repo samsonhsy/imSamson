@@ -342,3 +342,8 @@ body{
     transform: scale(1);
   }
 }
+
+.firstLine{
+	color: white;
+	margin-top: 60px;
+}
